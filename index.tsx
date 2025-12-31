@@ -193,10 +193,8 @@ const SwiftAidApp = () => {
   };
 
   const initLiveSession = async () => {
-      // Use Vite environment variables in the browser (VITE_ prefixed)
-      const apiKey = (import.meta as any).env?.VITE_API_KEY;
-      if (!apiKey) return;
-      const ai = new GoogleGenAI({ apiKey });
+    if (!process.env.API_KEY) return;
+    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
     audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)({ sampleRate: SAMPLE_RATE });
     outputAudioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)({ sampleRate: OUTPUT_SAMPLE_RATE });
 
